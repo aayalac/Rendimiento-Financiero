@@ -1,15 +1,18 @@
+import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# 1. Definir los datos
+# 1. Cargar los datos desde el archivo JSON
+with open('Datos.json', encoding='utf-8') as f:
+    raw = json.load(f)
+
 datos = {
-    'Concepto': ['Gas', 'Claro', 'Mercado', 'HVTV', 'Mercado Mama', 
-                 'Administracion', 'Abono gafas', 'Retenedores', 'Cuota'],
-    'Debito': [100000, 81049, 150000, 83000, 150000, 194000, 430000, 150000, 1000000]
+    'Concepto': raw['Concepto'],
+    'Debito': raw['Debito'],
 }
 
-capital = 2367888
+capital = raw['Capital'][0]
 
 # 2. Crear el DataFrame (la tabla de Python)
 df = pd.DataFrame(datos)
